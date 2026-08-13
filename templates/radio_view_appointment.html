@@ -1,0 +1,85 @@
+{% include 'radioheader.html' %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        color: #f8f8f8;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #010101;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #161212;
+    }
+
+    tr:nth-child(even) {
+        background-color: #b5afaf;
+    }
+
+    .view-details-btn, .upload-prescription-btn {
+        display: inline-block;
+        padding: 8px 16px;
+        text-decoration: none;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .view-details-btn:hover, .upload-prescription-btn:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<center>
+    <section style="background: url(/static/images/m2.jpg) center center no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    color: #cfcfcf;height: auto;
+          margin-top:80px;" id="home">
+         <div class="overlay">
+             <div class="container">
+                 <div class="row">
+    <h1> View Appointments </h1>
+    <br>
+    <form>
+        <table>
+            <tr>
+                <!-- <th>Doctor</th> -->
+                <th>Patient</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Action</th>
+                <!-- <th>Action</th> -->
+            </tr>
+            {% for i in data['view'] %}
+            <tr>
+                <!-- <td>{{i['fname']}} {{i['lname']}}</td> -->
+                <td>{{i['firstname']}} {{i['lastname']}}</td>
+                <td>{{i['date']}}</td>
+                <td>{{i['status']}}</td>
+                <td><a class="view-details-btn" href="radio_view_customers?aid={{i['appoinment_id']}}&uid={{i['user_id']}}">View Patient Details</a></td>
+                <!-- <td><a class="upload-prescription-btn" href="doctors_upload_prescription?appoinment_id={{i['appoinment_id']}}&uid={{i['user_id']}}">Upload Prescription</a></td> -->
+                <td><a class="upload-prescription-btn" href="radio_upload_prediction?appoinment_id={{i['appoinment_id']}}&uid={{i['user_id']}}">Predict</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</center>
+
+
+
+{% include 'footer.html' %}

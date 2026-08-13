@@ -1,0 +1,71 @@
+{% include 'adminheader.html' %}
+<br><br><br><br><br><br><br>
+
+
+<style>
+    center {
+        margin-top: 20px;
+    }
+
+    table {
+        width: 80%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #020202;
+    }
+
+    th {
+        background-color: #1628ef;
+    }
+
+    input[type="text"],
+    select,
+    input[type="file"],
+    input[type="date"] {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: rgb(0, 0, 0);
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<center>
+        <table>
+            <tr>
+                <th>Doctor Name</th>
+                <th>User Name</th>
+                <th>File</th>
+                <!-- <th>Output</th> -->
+            </tr>
+            {% for i in data['view'] %}
+            <tr>
+                <th>{{i['fname']}} {{i['lname']}}</th>
+                <th>{{i['firstname']}} {{i['lastname']}}</th>
+                <td>
+                    <a href="/{{i['filedetails']}}" download><img src="/{{i['filedetails']}}" style="width: 250px;height: 250px"></a>
+                </td>
+                <!-- <td>{{i['out_put_pre']}}</td> -->
+                 <td><a class="upload-prescription-btn" href="admin_predict_user_prediction?pre_img_id={{i['pre_img_id']}}&uid={{i['user_id']}}">Predict Out</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</center>
+{% include 'footer.html' %}

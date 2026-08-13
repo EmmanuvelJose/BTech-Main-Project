@@ -1,0 +1,85 @@
+{% include 'shopheader.html' %}
+   <section style="background: url(/static/images/m1.jpg) center center no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: #cfcfcf;height: auto;
+        margin-top:80px;" id="home">
+       <div class="overlay">
+           <div class="container">
+               <div class="row">
+
+<center>
+
+
+        {% if data['products'] %}  
+    <h1>PRODUCTS ON ORDER iD-{{data['products'][0]['omaster_id']}} </h1>
+    <table class="table" style="width: 500px"> 
+        <tr>
+            
+            <th>PRODUCT NAME</th>
+            <th>CATEGORY</th>
+            <th>SUBCATEGORY</th>
+            <th>BRAND</th>
+            <th>AMOUNT</th>
+            <th>QUANTITY</th>
+        </tr>
+        {% for row in data['products']%}
+        <tr>
+          
+            <td>{{ row['product'] }}</td>
+            <td>{{ row['category'] }}</td>
+             <td>{{ row['subcategory'] }}</td>
+             <td>{{ row['brand'] }}</td>
+             <td>{{ row['amount'] }}</td>
+            <td align="center" colspan="2">{{ row['orqua'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+	{% elif data['orders'] %}
+<h1>VIEW ORDER HISTORY</h1>
+		<table class="table" style="width: 1000PX">
+		<tr>
+			<th>REFERENCE ID OF PURCHASE</th>
+            <th>CUSTOMER</th>
+            <th>PHONE</th>
+            <th>BOOKED DATE</th>
+			<th>AMOUNT OF PURCHASE</th>
+			<th>VIEW PRODUCTS</th>
+			<th>STATUS</th>
+			
+		</tr>
+		{% for row in data['orders'] %}
+        <tr>
+            <td>{{ row['pbooking_id']}}</td>
+              <td>{{row['firstname']}}</td>
+            <td>{{row['phone']}}</td>
+            <td>{{row['date']}}</td>
+            <td>{{ row['total']}}</td>
+        
+            <td><a href="shop_view_bproduct?bid={{row['pbooking_id']}}" class="btn btn-danger">VIEW PRODUCTS</a></td>
+            <td>{{row['status']}}</td>
+            {% if row['status']=='pending' %}
+            <td><a href="?action=accept&bid={{row['pbooking_id']}}" lass="btn btn-primary">ACCEPT</a></td>
+             <td><a href="?action=reject&bid={{row['pbooking_id']}}" lass="btn btn-danger">REJECT</a></td>
+             {% endif %}
+            {% if row['status']=='paid' %}
+            <td><a href="shop_assigntodboy?bid={{row['pbooking_id']}}" class="btn btn-danger">ASSIGN TO DELIVERY BOYS</a></td>
+            {% endif %}
+            
+        </tr>
+        {% endfor %}
+	</table>
+	{%else %}
+	<h1>NO BOOKING HISTORY</h1>
+	{% endif %}
+
+</center>
+  </div>
+           </div>
+           <br><br><br><br><br><br><br><br><br>
+       </div>  
+      
+   </section>
+                            
+    
+{% include 'footer.html' %}

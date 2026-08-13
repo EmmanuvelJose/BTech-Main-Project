@@ -1,0 +1,160 @@
+{%  include 'shopheader.html' %}
+   <section style="background: url(/static/images/m1.jpg) center center no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: #cfcfcf;height: auto;
+        margin-top:80px;" id="home">
+       <div class="overlay">
+           <div class="container">
+               <div class="row">
+<center>
+	<form method="post">
+		{% if data['updater'] %}
+		<h1>UPDATE MEDICINE</h1>
+
+
+
+		<table class="table" style="width:  700px">
+		
+		
+		<tr>
+			<th>MEDICINE TYPE</th>
+			<td>
+				<select name="typ" class="form-control" style="width: 1200px;color: black">
+					{% for row in data['type'] %}
+					{% if row['type_id']==data['updater'][0]['medicine_id'] %}
+					<option value="{{row['type_id']}}" selected>{{row['type']}}</option>
+					{% else %}
+					<option value="{{row['type_id']}}">{{row['type']}}</option>
+					{% endif %}
+					{% endfor %}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>MEDICINE</th>
+			<td><input type="text" name="med"  class="form-control" id="lat" value="{{data['updater'][0]['medicine']}}">
+			
+		</tr>
+		
+		<tr>
+			<th>DETAILS</th>
+			<td><input type="text" name="det"  class="form-control" value="{{data['updater'][0]['details']}}"></td>
+		</tr>
+		<tr>
+			<th>RATE</th>
+			<td>
+			<input type="text" name="rate"  class="form-control" value="{{data['updater'][0]['rate']}}"></td>
+		</tr>
+		
+
+		<tr>
+			<th>QUANTITY</th>
+			<td><input type="text" name="qua"  class="form-control" value="{{data['updater'][0]['quantity']}}"></td>
+		</tr>
+		
+		
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="update" value="ADD" class="btn btn-primary"></td>
+		</tr>
+	</table>
+
+
+
+
+
+
+		{% else %}
+
+	
+
+		<h1>MANAGE MEDICINES</h1>
+
+		<table class="table" style="width:  700px">
+		<tr>
+			<th>MEDICINE TYPE</th>
+			<td>
+				<select name="typ">
+					{% for row in data['type'] %}
+					<option value="{{row['type_id']}}">{{row['type']}}</option>
+					{% endfor %}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>MEDICINE</th>
+			<td><input type="text" name="med"  class="form-control" id="lat">
+			
+		</tr>
+		
+		<tr>
+			<th>DETAILS</th>
+			<td><input type="text" name="det"  class="form-control"></td>
+		</tr>
+		<tr>
+			<th>RATE</th>
+			<td>
+			<input type="text" name="rate"  class="form-control"></td>
+		</tr>
+		
+
+		<tr>
+			<th>QUANTITY</th>
+			<td><input type="text" name="qua"  class="form-control" ></td>
+		</tr>
+		<tr>
+			<th>MANUFACTURE DATE</th>
+			<td>
+			<input type="date" name="mdate"  class="form-control" ></td>
+		</tr>
+		<tr>
+			<th>EXPIRY DATE</th>
+			<td>
+			<input type="date" name="edate"  class="form-control" ></td>
+		</tr>
+		
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit" value="ADD" class="btn btn-primary"></td>
+		</tr>
+	</table>
+
+
+
+		{% if data['med'] %}
+		<h1>MEDICINES ADDED </h1>
+		<table class="table" width="600px">
+			<tr>
+				<th>MEDICINE TYPE</th>
+				<th>MEDICINE</th>
+				<th>DETAILS</th>
+				<th>RATE</th>
+				<th>QUANTITY</th>
+			</tr>
+			{% for row in data['med'] %}
+			<tr>
+				<td>{{ row['type'] }}</td>
+				<td>{{row ['medicine']}}</td>
+				<td>{{ row['details']}}</td>
+				<td>{{row['rate']}}</td>
+				<td>{{row['quantity']}}</td>
+				<td><a href="?action=update&id={{ row['medicine_id'] }}" class="btn btn-warning">UPDATE</a></td>
+				<td><a href="?action=delete&id={{ row['medicine_id'] }}" class="btn btn-danger" >DELETE</a></td>
+			</tr>
+			{% endfor%}
+		</table>
+		{% else %}
+		<h2>NO MEDICINES ADDED IN OUR SYSTEM</h2>
+		{% endif %}
+		{% endif %}
+	</form>
+</center>
+  </div>
+           </div>
+           <br><br><br><br><br><br><br><br><br>
+       </div>  
+      
+   </section>
+		   					
+	
+
+{% include 'footer.html' %}

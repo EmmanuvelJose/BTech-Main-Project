@@ -1,0 +1,42 @@
+{% include 'publicheader.html' %}
+<form method="post">
+<center>
+<h1>CUSTOMER REGISTRATION</h1>
+	<table class="table" style="width:  700px">
+		<tr>
+			<th>FIRST NAME</th>
+			<td><input type="text" name="fname" required class="form-control"></td>
+		</tr>
+		<tr>
+			<th>LAST NAME</th>
+			<td><input type="text" name="lname" required class="form-control"></td>
+		</tr>
+		<tr>
+			<th>PLACE</th>
+			<td><input type="text" name="place" required class="form-control"></td>
+		</tr>
+		<tr>
+			<th>PHONE</th>
+			<td><input type="text" name="phone" required class="form-control"></td>
+		</tr>
+		<tr>
+			<th>EMAIL</th>
+			<td>
+			<input type="email" name="email" required class="form-control"></td>
+		</tr>
+		
+		<tr>
+			<th>USER NAME</th>
+			<td><input type="text" name="uname" required minlength="5" placeholder="User Name Must Be Atleast 5 Charecter " class="form-control" ></td>
+		</tr>
+		<tr>
+			<th>PASSWORD</th>
+			<td><input type="password" name="password" required minlength="8" placeholder="Password Must Be Atleast 8 Charecter" class="form-control"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit" value="register" class="btn btn-primary"></td>
+		</tr>
+	</table>
+</center>
+</form>
+{% include 'footer.html' %}

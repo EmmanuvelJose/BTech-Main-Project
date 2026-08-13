@@ -1,0 +1,52 @@
+{% include 'shopheader.html' %}
+   <section style="background: url(/static/images/m1.jpg) center center no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: #cfcfcf;height: auto;
+        margin-top:80px;" id="home">
+       <div class="overlay">
+           <div class="container">
+               <div class="row">
+<center>
+
+		{% if data['mdet'] %}
+		<h1>MEDICINES ADDED </h1>
+		<table class="table" width="600px">
+			<tr>
+				<th>MEDICINE TYPE</th>
+				<th>MEDICINE</th>
+				<th>RATE</th>
+				<th>QUANTITY</th>
+				<TH>TOTAL</TH>
+			</tr>
+			{% for row in data['mdet'] %}
+			<tr>
+				<td>{{ row['type'] }}</td>
+				<td>{{row ['medicine']}}</td>
+				
+				<td>{{row['rate']}}</td>
+				<td>{{row['mdqua']}}</td>
+				<td>{{ row['total']}}</td>
+				
+				
+			</tr>
+			{% endfor%}
+	
+		 <tr>
+            <td colspan="5" align="center">TOTAL -{{data['totalamount']}}</td>
+        </tr>
+        	</table>
+		{% else %}
+		
+		{% endif %}
+	</form>
+</center>
+  </div>
+           </div>
+           <br><br><br><br><br><br><br><br><br>
+       </div>  
+      
+   </section>
+		   					
+	
+{% include 'footer.html' %}

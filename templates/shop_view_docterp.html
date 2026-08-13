@@ -1,0 +1,95 @@
+{% include 'shopheader.html' %}
+
+   <section style="background: url(/static/images/m1.jpg) center center no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: #cfcfcf;height: auto;
+        margin-top:80px;" id="home">
+       <div class="overlay">
+           <div class="container">
+               <div class="row">
+<center>
+
+
+        {% if data['products'] %}  
+    <h1>PRODUCTS ON ORDER iD-{{data['products'][0]['omaster_id']}} </h1>
+    <table class="table" style="width: 500px"> 
+        <tr>
+            
+            <th>PRODUCT NAME</th>
+            <th>CATEGORY</th>
+            <th>SUBCATEGORY</th>
+            <th>BRAND</th>
+            <th>AMOUNT</th>
+            <th>QUANTITY</th>
+        </tr>
+        {% for row in data['products']%}
+        <tr>
+          
+            <td>{{ row['product'] }}</td>
+            <td>{{ row['category'] }}</td>
+             <td>{{ row['subcategory'] }}</td>
+             <td>{{ row['brand'] }}</td>
+             <td>{{ row['totalamount'] }}</td>
+            <td align="center" colspan="2">{{ row['orqua'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+	{% elif data['orders'] %}
+
+<h1>VIEW DOCTOR PRESCRIPTION</h1>
+		<table class="table" style="width: 1000PX">
+		<tr>
+			<th>SL.NO</th>
+            <th>CUSTOMER</th>
+            <th>PHONE</th>
+            <th>BOOKED DATE</th>
+			<th>DOCTOR PRESRIPTION</th>
+            <th>TOTAL</th>
+			<th>STATUS</th>
+			
+		</tr>
+		{% for row in data['orders'] %}
+        <tr>
+            <td>{{loop.index}}</td>
+              <td>{{row['firstname']}}</td>
+            <td>{{row['phone']}}</td>
+            <td>{{row['date']}}</td>
+
+            <td><a href="/{{row['uploadfile']}}"><img src="/{{row['uploadfile']}}" style="width: 50px;height: 50px"></a></td>
+
+          <td>{{ row['totalamount'] }}</td>
+          <td>{{row['status']}}</td>
+
+
+         {% if row['status']=='pending' %}
+            <td><a href="shop_upoload_medi?prescription_id={{row['prescription_id']}}&name={{row['firstname']}}" class="btn btn-danger">UPLOAD MEDICINE DETAILS</a></td>
+          {% endif %}
+
+           {% if row['status']=='paid' %}  
+           <td><a href="shopviewpro?prescription_id={{row['prescription_id']}}&name={{row['firstname']}}" class="btn btn-danger">VIEW PRODUCTS</a></td> 
+             {% if row['status']!='dispatched' %} 
+            <td><a href="shop_assigntodboy?prescription_id={{row['prescription_id']}}&name={{row['firstname']}}" class="btn btn-danger">ASSIGN TO DELIVERY BOYS</a></td>
+              {% endif %}
+          {% endif %}
+
+            
+        </tr>
+        {% endfor %}
+      
+       
+	</table>
+	{%else %}
+	<h1>NO BOOKING HISTORY</h1>
+	{% endif %}
+
+</center>
+  </div>
+           </div>
+           <br><br><br><br><br><br><br><br><br>
+       </div>  
+      
+   </section>
+                
+  
+{% include 'footer.html' %}

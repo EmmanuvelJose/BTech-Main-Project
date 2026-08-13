@@ -1,0 +1,152 @@
+{% include 'adminheader.html' %}
+
+   <section style="background: url(/static/images/m3.jpg) center center no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: #cfcfcf;height: auto;
+        margin-top:80px;" id="home">
+       <div class="overlay">
+           <div class="container">
+               <div class="row">
+<center>
+	<form method="post">
+		{% if data['updater'] %}
+		<h1>UPDATE TRAINER DETAILS</h1>
+
+
+
+		<table class="table" style="width:  700px">
+		<tr>
+			<th>FIRST NAME</th>
+			<td><input type="text" name="fname"  class="form-control" value="{{data['updater'][0]['firstname']}}"></td>
+		</tr>
+		<tr>
+			<th>LAST NAME</th>
+			<td><input type="text" name="lname"  class="form-control" value="{{data['updater'][0]['lastname']}}">
+			
+		</tr>
+		<tr>
+			<th>PLACE</th>
+			<td><input type="text" name="place"  class="form-control" value="{{data['updater'][0]['place']}}"></td>
+		</tr>
+		<tr>
+			<th>PHONE</th>
+			<td><input type="text" name="phone"  class="form-control" value="{{data['updater'][0]['phone']}}"></td>
+		</tr>
+		<tr>
+			<th>EMAIL</th>
+			<td>
+			<input type="email" name="email"  class="form-control" value="{{data['updater'][0]['email']}}"></td>
+		</tr>
+		<tr>
+			<th>DATE OF BIRTH</th>
+			<td>
+			<input type="date" name="date"  class="form-control" value="{{data['updater'][0]['dob']}}"></td>
+		</tr>
+		<tr>
+			<th>GENDER</th>
+			<td>
+				{% if data['updater'][0]['gender']=='Male' %}
+				Male<input type="radio" name="gen" value="Male" checked>
+				Female<input type="radio" name="gen" value="Female">
+				{% else %}
+				Male<input type="radio" name="gen" value="Male" >
+				Female<input type="radio" name="gen" value="Female" checked>
+				{% endif %}
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="update" value="UPDATE" class="btn btn-primary"></td>
+		</tr>
+	</table>
+
+
+
+
+		{% else %}
+
+		<h1>MANAGE TRAINER</h1>
+
+		<table class="table" style="width:  700px">
+		<tr>
+			<th>FIRST NAME</th>
+			<td><input type="text" name="fname"  class="form-control"></td>
+		</tr>
+		<tr>
+			<th>LAST NAME</th>
+			<td><input type="text" name="lname"  class="form-control" id="lat">
+			
+		</tr>
+		<tr>
+			<th>PLACE</th>
+			<td><input type="text" name="place"  class="form-control"></td>
+		</tr>
+		<tr>
+			<th>PHONE</th>
+			<td><input type="text" name="phone"  class="form-control"></td>
+		</tr>
+		<tr>
+			<th>EMAIL</th>
+			<td>
+			<input type="email" name="email"  class="form-control"></td>
+		</tr>
+		<tr>
+			<th>DATE OF BIRTH</th>
+			<td>
+			<input type="date" name="date"  class="form-control"></td>
+		</tr>
+		<tr>
+			<th>GENDER</th>
+			<td>
+				Male<input type="radio" name="gen" value="Male">
+				Female<input type="radio" name="gen" value="Female">
+			</td>
+		</tr>
+
+		
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit" value="ADD" class="btn btn-primary"></td>
+		</tr>
+	</table>
+
+
+
+		{% if data['trainer'] %}
+		<h1>TRAINERS ADDED IN OUR SYSTEM</h1>
+		<table class="table" width="600px">
+			<tr>
+				<th>TRAINER NAME</th>
+				<th>PLACE</th>
+				<th>PHONE</th>
+				<th>EMAIL</th>
+				<th>DATE OF BIRTH</th>
+				<th>GENDER</th>
+			</tr>
+			{% for row in data['trainer'] %}
+			<tr>
+				<td>{{ row['firstname'] }} {{ row['lastname'] }}</td>
+				<td>{{row ['place']}}</td>
+				<td>{{ row['phone']}}</td>
+				<td>{{row['email']}}</td>
+				<td>{{row['dob']}}</td>
+				<td>{{row['gender']}}</td>
+				<td><a href="?action=update&id={{ row['trainer_id'] }}" class="btn btn-warning">UPDATE</a></td>
+				<td><a href="?action=delete&id={{ row['trainer_id'] }}" class="btn btn-danger" >DELETE</a></td>
+			</tr>
+			{% endfor%}
+		</table>
+		{% else %}
+		<h2>NO TRAINER TYPES ADDED IN OUR SYSTEM</h2>
+		{% endif %}
+		{% endif %}
+	</form>
+</center>
+                           
+	  </div>
+           </div>
+           <br><br><br><br><br><br><br><br><br>
+       </div>  
+      
+   </section>
+		   		
+{% include 'footer.html' %}

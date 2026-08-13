@@ -1,0 +1,204 @@
+{% include 'adminheader.html' %}
+
+
+   <section style="background: url(/static/images/m2.jpg) center center no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: #cfcfcf;height: auto;
+        margin-top:80px;" id="home">
+       <div class="overlay">
+           <div class="container">
+               <div class="row">
+<center>
+	<form method="post">
+{% if data['updater'] %}
+		<h1>UPDATE MEDICAL SHOP</h1>
+
+
+    <script src="
+https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+<script>
+    $(function() {
+        $("input[name='shopname']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+        $("input[name='place']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+        // $("input[name='dob']").on('input', function(e) {
+        //     $(this).val($(this).val().replace(/[^0-9/]/g, ''));
+
+        // });
+        
+        $("input[name='phone']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+        $("input[name='pincode']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+        $("input[name='email']").on('input', function(e) {
+              var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{1,}/.test(this.value);
+                if(!re) {
+                    $('#eerror').show();
+                } else {
+                    $('#eerror').hide();
+                }
+
+        });
+        $("input[name='address']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z0-9()/. ]/g, ''));
+
+        });
+        $("input[name='pl']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+            
+        $("input[name='pwd']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9A-Za-z@/. ]/g, ''));
+            
+        });
+    });
+
+
+
+   var check = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('confirm_password').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'matching';
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'not matching';
+  }
+}
+</script>
+
+		<table class="table" style="width:  700px">
+		<tr>
+			<th>SHOP NAME</th>
+			<td><input type="text" name="shopname" pattern="[A-Za-z]+$" title="Enter Alphabet Only" class="form-control" value="{{data['updater'][0]['shopname']}}"></td>
+		</tr>
+		<tr>
+			<th>PLACE</th>
+			<td><input type="text" name="place" pattern="[A-Za-z]+$" title="Enter Alphabet Only"  class="form-control" id="lat"  value="{{data['updater'][0]['place']}}" >
+
+		</tr>
+		<tr>
+			<th>CITY</th>
+			<td><input type="text" name="city" pattern="[A-Za-z]+$" title="Enter Alphabet Only" required class="form-control"  value="{{data['updater'][0]['city']}}"></td>
+		</tr>
+		<tr>
+			<th>DISTRICT</th>
+			<td><input type="text" name="district" pattern="[A-Za-z]+$" title="Enter Alphabet Only" required class="form-control"  value="{{data['updater'][0]['district']}}"></td>
+		</tr>
+
+		<tr>
+			<th>PHONE</th>
+			<td><input type="text" name="phone" pattern="[0-9]{10}" title="Enter Alphabet Only" value={{data['updater'][0]['phone']}} class="form-control"  required="" pattern="[0-9]{10}"></td>	
+		</tr>
+		<tr>
+			<th>EMAIL</th>
+			<td>
+			<input type="email" name="email"  title="Enter Alphabet Only"  class="form-control" value="{{data['updater'][0]['email']}}"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="update" value="UPDATE" class="btn btn-primary"></td>
+		</tr>
+	</table>
+
+
+
+
+		{% else %}
+
+		
+	<h1>MEDICAL SHOP REGISTRATION</h1>
+	<table class="table" style="width:  700px">
+		<tr>
+			<th> NAME</th>
+			<td><input type="text" pattern="[A-Za-z ]+$" title="Enter Alphabet Only" name="shopname" required class="form-control"></td>
+		</tr>
+		<tr>
+			<th>PLACE</th>
+			<td><input type="text" pattern="[A-Za-z]+$" title="Enter Alphabet Only" name="place" required class="form-control"></td>
+		</tr>
+		<tr>
+			<th>CITY</th>
+			<td><input type="text" name="city" pattern="[A-Za-z]+$" title="Enter Alphabet Only" required class="form-control"></td>
+		</tr>
+		<tr>
+			<th>DISTRICT</th>
+			<td><input type="text" name="district" pattern="[A-Za-z]+$" title="Enter Alphabet Only" required class="form-control"></td>
+		</tr>
+		
+		<tr>
+			<th>PHONE</th>
+			<td><input type="text" name="phone" title="Enter Only 10 Digits" minlength="10" maxlength="10"  pattern="[0-9]{10}"  required class="form-control"></td>
+		</tr>
+		<tr>
+			<th>EMAIL</th>
+			<td>
+			<input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Eg -: anu@gmail.com required" class="form-control"></td>
+		</tr>
+		
+		
+		<tr>
+			<th>USER NAME</th>
+			<td><input type="text" name="uname" required minlength="5" placeholder="User Name Must Be Atleast 5 Character" title="User Name Must Be Atleast 5 Character" class="form-control" ></td>
+		</tr>
+		<tr>
+			<th>PASSWORD</th>
+			<td><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="password" required minlength="8" placeholder="Password Must Be Atleast 8 Character" class="form-control"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit" value="register" class="btn btn-primary"></td>
+		</tr>
+	</table>
+{% if data['mshop'] %}
+		<h1>MEDICAL SHOPS ADDED IN OUR SYSTEM</h1>
+		<table class="table" width="600px">
+			<tr>
+				<th>MEDICAL SHOP</th>
+				<th>PLACE</th>
+				<th>CITY</th>
+				<th>DISTRICT</th>
+				<th>PHONE</th>
+				<th>EMAIL</th>
+			</tr>
+			{% for row in data['mshop'] %}
+			<tr>
+				<td>{{ row['shopname'] }}</td>
+				<td>{{row ['place']}}</td>
+				<td>{{ row['city']}}</td>
+				<td>{{row['district']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+				<td><a href="?action=update&id={{ row['medicalshop_id'] }}" class="btn btn-warning">UPDATE</a></td>
+				<td><a href="?action=delete&id={{ row['medicalshop_id'] }}" class="btn btn-danger" >DELETE</a></td>
+			</tr>
+			{% endfor%}
+		</table>
+		{% else %}
+		<h2>NO MEDICAL SHOPS ADDED IN OUR SYSTEM</h2>
+		{% endif %}
+		{% endif %}
+	</form>
+</center>
+
+  </div>
+           </div>
+          
+       </div>  
+      
+   </section>
+		   		
+
+			
+
+{% include 'footer.html' %}

@@ -1,0 +1,53 @@
+{% include 'dboyheader.html' %}
+ <section style="background: url(/static/images/d1.jpg) center center no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: #cfcfcf;height: auto;
+        margin-top:80px;" id="home">
+       <div class="overlay">
+           <div class="container">
+               <div class="row">
+<center>
+	{% if data['assigned'] %}
+<h1>VIEW ORDERS ASSIGNED</h1>
+		<table class="table" style="width: 1000PX">
+		<tr>
+			<th>REFERENCE ID OF PURCHASE</th>
+            <th>CUSTOMER</th>
+            <th>PHONE</th>
+            <TH>PLACE</TH>
+            <th>BOOKED DATE</th>
+			<th>STATUS</th>
+			
+		</tr>
+		{% for row in data['assigned'] %}
+        <tr>
+            <td>{{ row['prescription_id']}}</td>
+              <td>{{row['firstname']}}</td>
+            <td>{{row['phone']}}</td>
+            <td>{{row['place']}}</td>
+            <td>{{row['pdate']}}</td>
+        
+            
+          
+            {% if row['status']=='dispatched' %}
+            <td><a href="?action=delivered&pid={{row['prescription_id']}}" lass="btn btn-primary">DELIVERED</a></td>
+         
+          
+            {% endif %}
+            
+        </tr>
+        {% endfor %}
+	</table>
+	{% else %}
+	<h1>NO ORDERS ASSIGNED</h1>
+	{% endif %}
+
+</center>
+ </div>
+           </div>
+           <br><br><br><br><br><br><br><br><br>
+       </div>  
+      
+   </section>
+{% include 'footer.html' %}

@@ -1,0 +1,64 @@
+{% include 'doctors_header.html' %}
+<style>
+    center {
+        margin-top: 20px;
+    }
+
+    h1 {
+        color: #e0e0e0;
+    }
+
+    table {
+        width: 80%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #100f0f;
+    }
+
+    th {
+        background-color: #040303;
+    }
+</style>
+
+<center>
+    <section style="background: url(/static/images/m2.jpg) center center no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    color: #cfcfcf;height: auto;
+          margin-top:80px;" id="home">
+         <div class="overlay">
+             <div class="container">
+                 <div class="row">
+    <h1>Patient Details</h1>
+    <br>
+    <form>
+        <table>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Date Of Birth</th>
+                <th>Phoneno</th>
+                <th>Email</th>
+                <th>Place</th>
+                <th>District</th>
+            </tr>
+            {% for i in data['view'] %}
+            <tr>
+                <td>{{i['firstname']}}</td>
+                <td>{{i['lastname']}}</td>
+                <td>{{i['dob']}}</td>
+                <td>{{i['phone']}}</td>
+                <td>{{i['email']}}</td>
+                <td>{{i['place']}}</td>
+                <td>{{i['district']}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</center>
+{% include 'footer.html' %}

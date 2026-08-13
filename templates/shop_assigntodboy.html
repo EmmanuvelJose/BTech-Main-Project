@@ -1,0 +1,38 @@
+{% include 'shopheader.html' %}
+
+   <section style="background: url(/static/images/m1.jpg) center center no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: #cfcfcf;height: auto;
+        margin-top:80px;" id="home">
+       <div class="overlay">
+           <div class="container">
+               <div class="row">
+<h1>ASSIGN TO DELIVERY BOY</h1>
+<form method="post">
+<table>
+	<tr>
+		<th>CHOOSE DELIVERY BOY</th>
+		<td><select name="dboy">
+			 {% for row in data['dboy'] %}
+			<option value="{{row['boy_id']}}">{{row['firstname']}}</option>
+			{% endfor %}
+		</select></td>
+	</tr>
+	<tr>
+		
+		<td colspan="2" align="center"><input type="submit" name="submit" value="ASSIGN"></td>
+	</tr>
+</table>
+
+</form>
+  </div>
+           </div>
+           <br><br><br><br><br><br><br><br><br>
+       </div>  
+      
+   </section>
+		   					
+	
+
+{% include 'footer.html' %}

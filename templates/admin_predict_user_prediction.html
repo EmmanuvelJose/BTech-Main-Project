@@ -1,0 +1,126 @@
+{% include 'adminheader.html' %}
+<br><br><br><br><br><br><br>
+
+
+<style>
+    center {
+        margin-top: 20px;
+    }
+
+    table {
+        width: 80%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #020202;
+    }
+
+    th {
+        background-color: #4CAF50;
+    }
+
+    input[type="text"],
+    select,
+    input[type="file"],
+    input[type="date"] {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: rgb(0, 0, 0);
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #4CAF50;
+    }
+</style>
+
+<center>
+    {% if data['up'] %}
+    <h1>Upload Prescription</h1>
+    <section style="background: url(/static/images/m2.jpg) center center no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    color: #cfcfcf;height: auto;
+          margin-top:80px;" id="home">
+         <div class="overlay">
+             <div class="container">
+                 <div class="row">
+    <form method="post"  enctype="multipart/form-data">
+        <table>
+            <tr>
+                <!-- <th>Medicalshop</th>
+                <td>
+                    <select name="med">
+                        {% for i in data['v'] %}
+                        <option value="{{i['medicalshop_id']}}">{{i['shopname']}}</option>
+                        {% endfor %}
+                    </select>
+                </td> -->
+            </tr>
+            <tr>
+                <th>File</th>
+                <td><input type="file" name="upload"></td>
+            </tr>
+            <tr>
+                <th>Total Amount</th>
+                <td><input type="text" name="amt" value="{{data['up'][0]['total_amount']}}"></td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td><input type="date" name="da"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="update" value="Update"></td>
+            </tr>
+        </table>
+    </form>
+    {% else %}
+    <form method="post"  enctype="multipart/form-data">
+        <table>
+            <!-- <tr>
+                <th>Medical Shop</th>
+                <td>
+                    <select name="med">
+                        {% for i in data['v'] %}
+                        <option value="{{i['medicalshop_id']}}">{{i['shopname']}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr> -->
+            <tr>
+                <th>File</th>
+                <td><input type="file" name="upload"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="submit" value="Submit"></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+             
+                <th>File</th>
+                <th>Output</th>
+            </tr>
+            {% for i in data['view'] %}
+            <tr>
+                <td><a href="/{{i['filedetails']}}" ><img src="/{{i['pre_image']}}" style="width: 250px;height: 250px"></a></td>
+                <td>{{i['predicted']}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    {% endif %}
+</center>
+{% include 'footer.html' %}

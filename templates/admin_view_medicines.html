@@ -1,0 +1,48 @@
+{%  include 'adminheader.html' %}
+
+
+   <section style="background: url(/static/images/m2.jpg) center center no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: #cfcfcf;height: auto;
+        margin-top:80px;" id="home">
+       <div class="overlay">
+           <div class="container">
+               <div class="row">
+<center>
+	
+		{% if data['med'] %}
+		<h1>MEDICINES ADDED </h1>
+		<table class="table" width="600px">
+			<tr>
+				<th>MEDICINE TYPE</th>
+				<th>MEDICINE</th>
+				<th>DETAILS</th>
+				<th>RATE</th>
+				<th>QUANTITY</th>
+			</tr>
+			{% for row in data['med'] %}
+			<tr>
+				<td>{{ row['type'] }}</td>
+				<td>{{row ['medicine']}}</td>
+				<td>{{ row['details']}}</td>
+				<td>{{row['rate']}}</td>
+				<td>{{row['quantity']}}</td>
+			
+			</tr>
+			{% endfor%}
+		</table>
+		{% else %}
+		<h2>NO MEDICINES ADDED IN OUR SYSTEM</h2>
+		{% endif %}
+
+</center>
+                           
+	  </div>
+           </div>
+           <br><br><br><br><br><br><br><br><br>
+       </div>  
+      
+   </section>
+		   		
+{% include 'footer.html' %}

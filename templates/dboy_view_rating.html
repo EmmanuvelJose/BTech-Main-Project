@@ -1,0 +1,40 @@
+{% include 'dboyheader.html'  %}
+ <section style="background: url(/static/images/d1.jpg) center center no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: #cfcfcf;height: auto;
+        margin-top:80px;" id="home">
+       <div class="overlay">
+           <div class="container">
+               <div class="row">
+<center>
+{% if data['rating']%}
+<h1>VIEW RATING</h1>
+<div style="overflow-y: auto;height: 160px">
+<table class="table" style="width: 800px">
+	<tr>
+		<th>CUSTOMER</th>
+		<th>RATE</th>
+		<th>DATE</th>
+	</tr>
+
+{% for row in data['rating'] %}
+<tr>
+	<td>{{row['firstname'] +" "+row['lastname']}}</td>
+	<td>{{row['rated']}}</td>
+	
+	<td>{{row['date']}}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<h1>NO USER ADD RATING</h1>
+{% endif %}
+</center>
+ </div>
+           </div>
+           <br><br><br><br><br><br><br><br><br>
+       </div>  
+      
+   </section>
+{% include 'footer.html' %}

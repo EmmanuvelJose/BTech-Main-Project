@@ -1,0 +1,52 @@
+{% include 'adminheader.html' %}
+
+   <section style="background: url(/static/images/m3.jpg) center center no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: #cfcfcf;height: auto;
+        margin-top:80px;" id="home">
+       <div class="overlay">
+           <div class="container">
+               <div class="row">
+<center>
+	<form method="post">
+		
+<h1>VIEW BOOKING AND PAYMENTS</h1>
+		<table class="table" style="width: 1000PX">
+		<tr>
+			<th>SL.NO</th>
+            <th>Patient</th>
+            <th>Doctor Name</th>
+            <th>Booking Date</th>
+            <th>Booking Time</th>
+            <th>TOTAL</th>
+			<th>STATUS</th>
+			
+		</tr>
+		{% for row in data['orders'] %}
+        <tr>
+            <td>{{loop.index}}</td>
+              <td>{{row['firstname']}} {{row['lastname']}} </td>
+              <td>{{row['fname']}} {{row['lname']}}   </td>
+            <td>{{row['date']}}</td>
+            <td>{{row['time']}}</td>
+          <td>{{ row['app_amount'] }}</td>
+          <td>{{row['status']}}</td>
+
+            
+        </tr>
+        {% endfor %}
+      
+       
+	</table>
+	</form>
+</center>
+                           
+	  </div>
+           </div>
+           <br><br><br><br><br><br><br><br><br>
+       </div>  
+      
+   </section>
+		   		
+{% include 'footer.html' %}

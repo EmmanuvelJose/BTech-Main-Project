@@ -1,0 +1,78 @@
+{% include 'adminheader.html' %}
+   <section style="background: url(/static/images/m2.jpg) center center no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: #cfcfcf;height: auto;
+        margin-top:80px;" id="home">
+       <div class="overlay">
+           <div class="container">
+               <div class="row">
+<center>
+	<form method="post">
+		{% if data['updater'] %}
+		<h1>UPDATE TYPE</h1>
+		
+		<table class="table" style="width:  700px">
+		<tr>
+			<th>TYPE</th>
+			<td><input type="text" name="typ"  class="form-control" value="{{data['updater'][0]['type']}}"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="update" value="UPDATE" class="btn btn-primary"></td>
+		</tr>
+	</table>
+
+
+		{% else %}
+
+
+	
+		<h1>MANAGE TYPE</h1>
+
+		<table class="table" style="width:  700px">
+		<tr>
+			<th>TYPE</th>
+			<td><input type="text" name="typ"  class="form-control"></td>
+		</tr>
+		
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="submit"  class="btn btn-info" value="ADD"></td>
+		</tr>
+
+
+		</table>
+
+
+		{% if data['type'] %}
+		<h1>TYPES ADDED IN OUR SYSTEM</h1>
+		<table class="table" width="600px">
+			<tr>
+				<th>SL.NO</th>
+				<th>TYPE</th>
+				<th>UPDATE</th>
+				<TH>DELETE</TH>
+			</tr>
+			{% for row in data['type'] %}
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{ row['type'] }}</td>
+				<td><a href="?action=update&id={{ row['type_id'] }}" class="btn btn-warning">UPDATE</a></td>
+				<td><a href="?action=delete&id={{ row['type_id'] }}" class="btn btn-danger" >DELETE</a></td>
+			</tr>
+			{% endfor%}
+		</table>
+		{% else %}
+		<h2>NO TYPES ADDED IN OUR SYSTEM</h2>
+		{% endif %}
+		{% endif %}
+	</form>
+</center>
+                           
+	  </div>
+           </div>
+           <br><br><br><br><br><br><br><br><br>
+       </div>  
+      
+   </section>
+		   		
+{% include 'footer.html' %}

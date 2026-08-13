@@ -1,0 +1,84 @@
+{% include 'doctors_header.html' %}
+<br><br><br><br><br><br><br>
+
+
+<style>
+    center {
+        margin-top: 20px;
+    }
+
+    table {
+        width: 80%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #020202;
+    }
+
+    th {
+        background-color: #f10b95;
+        /* background-color: #ec05a3; */
+    }
+
+    input[type="text"],
+    select,
+    input[type="file"],
+    input[type="date"] {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: rgb(0, 0, 0);
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #4CAF50;
+    }
+</style>
+
+<center>
+                    
+    <h2>View Results</h2>
+    <section style="background: url(/static/images/m2.jpg) center center no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    color: #cfcfcf;height: auto;
+          margin-top:80px;" id="home">
+         <div class="overlay">
+             <div class="container">
+                 <div class="row">
+                    <form>
+                        <table>
+                            <tr>
+                                
+                                <th>PREDICTED LABEL :   
+                        
+                            {% for i in data['view'] %}
+                            
+                                 {{i['predicted']}}</th>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </center>
+
+
+
+{% include 'footer.html' %}

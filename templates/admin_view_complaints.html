@@ -1,0 +1,68 @@
+{% include 'adminheader.html' %}
+  
+   <section style="background: url(/static/images/m2.jpg) center center no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: #cfcfcf;height: auto;
+        margin-top:80px;" id="home">
+       <div class="overlay">
+           <div class="container">
+               <div class="row">
+<center>
+<form method="post">
+{% if data['updater']%}
+<h1 align="center">UPDATE REPLY</h1>
+<table class="table" style="width: 400px">
+<tr>
+	<th>NAME OF USER</th>;
+	<td>{{ data['updater'][0]['fname']}}</td>
+</tr>
+<tr>
+	<th>COMPLAINT</th>&emsp;
+	<td>{{ data['updater'][0]['complaint']}}</td>
+</tr>
+<tr>
+	<th>REPLY</th>
+	<td><input type="text" name="reply" value="{{ data['updater'][0]['reply']}}" class="form-control"></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><input type="submit" name="update" value="UPDATE" class="btn btn-info"></td>
+</tr>
+</table>
+{%else%}
+{%endif%}
+<br>
+<br>
+<h1 align="center">COMPLAINTS IN OUR SYSTEM</h1>
+<table class="table" style="width: 800px">
+	<tr>
+		<th>NAME OF USER</th>
+		<th>COMPLAINT</th>
+		<th>REPLY</th>
+		<th>DATE TIME</th>
+		<th>UPDATE REPLY</th>
+	</tr>
+	{% for row in data['complaints'] %}
+	<tr>
+		<td>{{row['fname'] + row['lname'] }} </td>
+		<td>{{row['complaint']}}</td>
+		<td>{{row['reply']}}</td>
+		<td>{{row['date']}}</td>
+		<td><a href="?action=update&id={{row['complaint_id']}}" class="btn btn-info">Update reply</a></td>
+	</tr>
+	{% endfor %}
+</table>
+
+</form>
+</center>
+                           
+	  </div>
+           </div>
+           <br><br><br><br><br><br><br><br><br>
+       </div>  
+      
+   </section>
+		   		
+
+
+{% include 'footer.html' %}

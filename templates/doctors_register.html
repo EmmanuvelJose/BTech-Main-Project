@@ -1,0 +1,41 @@
+{% include 'publicheader.html' %}
+  <center>
+    <br><br><br><br><br><br><br>
+    <h1>Doctors Registration</h1>
+    <form method="post">
+      <table>
+        <tr>
+          <td align="right"><label for="fname">First Name:</label></td>
+          <td><input type="text" id="fname" name="fname" class="form-control" required pattern="[a-zA-Z\s]{0,50}"></td>
+        </tr>
+        <tr>
+          <td align="right"><label for="lname">Last Name:</label></td>
+          <td><input type="text" id="lname" name="lname" class="form-control" required pattern="[a-zA-Z\s]{0,50}"></td>
+        </tr>
+        <tr>
+          <td align="right"><label for="pla">Place:</label></td>
+          <td><input type="text" id="pla" name="pla" class="form-control" required pattern="[a-zA-Z\s]{0,50}"></td>
+        </tr>
+        <tr>
+          <td align="right"><label for="phn">Phone Number:</label></td>
+          <td><input type="text" id="phn" name="phn" class="form-control" required pattern="[0-9]{10}"></td>
+        </tr>
+        <tr>
+          <td align="right"><label for="mail">Email:</label></td>
+          <td><input type="email" id="mail" name="mail" class="form-control" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"></td>
+        </tr>
+        <tr>
+          <td align="right"><label for="uname">Username:</label></td>
+          <td><input type="text" id="uname" name="uname" class="form-control" required pattern="[a-zA-Z\s]{0,50}"></td>
+        </tr>
+        <tr>
+          <td align="right"><label for="pwd">Password:</label></td>
+          <td><input type="password" id="pwd" name="pwd" class="form-control" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"></td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center"><input type="submit" name="ds" value="Submit" style="background-color: #4CAF50; color: white;"></td>
+        </tr>
+      </table>
+    </form>
+  </center>
+{% include 'footer.html' %}

@@ -1,0 +1,62 @@
+{% include 'radioheader.html' %}
+<style>
+    center {
+        margin-top: 20px;
+    }
+
+    h1 {
+        color: #e0e0e0;
+    }
+
+    table {
+        width: 80%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #e80280;
+    }
+
+    th {
+        background-color: #040303;
+    }
+</style>
+
+<center>
+    <h3>View Result</h3>
+    <section style="background: url(/static/images/m2.jpg) center center no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    color: #cfcfcf;height: auto;
+          margin-top:80px;" id="home">
+          <!-- <h3>View Result</h3> -->
+         <div class="overlay">
+             <div class="container">
+                 <div class="i">
+                    <form action="" method="post">
+                        
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Predicted Disease</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in data['view'] %}
+                                    <tr>
+                                        <td><b> {{ i['predicted'] }}</b></td>
+                                    <!-- ss{{data['perdicted']}} -->
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </form>
+                     </div>
+                </div>
+            </div>
+            </section>
+            </center>
+            {% include 'footer.html' %}      
