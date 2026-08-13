@@ -1,0 +1,5 @@
+-- database: d:\Users\Desktop\dash4\jaxdb.db
+
+-- Use the ▷ button in the top right corner to run the entire file.
+
+CREATE TABLE `jaxadmin` (`username` TEXT NOT NULL, `password` TEXT);
